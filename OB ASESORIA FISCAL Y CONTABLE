@@ -1,0 +1,84 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Phone, Mail, MessageCircle } from "lucide-react";
+
+export default function OBAasesoriaFiscalYContable() {
+  const [page, setPage] = useState("inicio");
+
+  const pages = {
+    inicio: (
+      <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center p-10">
+        <h1 className="text-4xl font-bold text-blue-900 mb-4">OB ASESORÍA FISCAL Y CONTABLE</h1>
+        <p className="text-gray-600 max-w-2xl mx-auto">
+          Servicios contables y fiscales profesionales para personas físicas y morales en México. Nos especializamos en brindar soluciones integrales, seguras y personalizadas para el cumplimiento de tus obligaciones fiscales.
+        </p>
+      </motion.section>
+    ),
+
+    servicios: (
+      <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-10">
+        <h2 className="text-3xl font-semibold text-blue-900 mb-6 text-center">Nuestros Servicios</h2>
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          <div className="bg-gray-100 p-6 rounded-2xl shadow">
+            <h3 className="text-xl font-semibold mb-2 text-blue-800">Contabilidad General</h3>
+            <p className="text-gray-600">Llevamos tu contabilidad mensual, estados financieros y conciliaciones bancarias conforme a las disposiciones del SAT.</p>
+          </div>
+          <div className="bg-gray-100 p-6 rounded-2xl shadow">
+            <h3 className="text-xl font-semibold mb-2 text-blue-800">Declaraciones Fiscales</h3>
+            <p className="text-gray-600">Preparación y presentación de declaraciones provisionales, anuales y complementarias para personas físicas y morales.</p>
+          </div>
+          <div className="bg-gray-100 p-6 rounded-2xl shadow">
+            <h3 className="text-xl font-semibold mb-2 text-blue-800">Asesoría Fiscal</h3>
+            <p className="text-gray-600">Te orientamos en la correcta planeación fiscal, evitando riesgos y optimizando tu carga tributaria de forma legal.</p>
+          </div>
+          <div className="bg-gray-100 p-6 rounded-2xl shadow">
+            <h3 className="text-xl font-semibold mb-2 text-blue-800">Trámites ante el SAT</h3>
+            <p className="text-gray-600">Altas y bajas de RFC, actualización de obligaciones, e.firma, devoluciones y aclaraciones ante el SAT.</p>
+          </div>
+        </div>
+      </motion.section>
+    ),
+
+    contacto: (
+      <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center p-10">
+        <h2 className="text-3xl font-semibold text-blue-900 mb-4">Contáctanos</h2>
+        <p className="text-gray-600 mb-8">Estamos listos para atender tus necesidades contables y fiscales. Comunícate con nosotros a través de los siguientes medios:</p>
+        <div className="flex flex-col md:flex-row gap-6 justify-center">
+          <a href="https://wa.me/5210000000000" target="_blank" className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-2xl shadow">
+            <MessageCircle /> WhatsApp
+          </a>
+          <a href="mailto:contacto@obasesoria.com" className="flex items-center justify-center gap-2 bg-blue-800 hover:bg-blue-900 text-white px-6 py-3 rounded-2xl shadow">
+            <Mail /> Correo electrónico
+          </a>
+          <a href="tel:+520000000000" className="flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-2xl shadow">
+            <Phone /> Llamar
+          </a>
+        </div>
+      </motion.section>
+    ),
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      {/* Header */}
+      <header className="bg-blue-900 text-white py-5 shadow">
+        <div className="container mx-auto flex justify-between items-center px-6">
+          <h1 className="text-2xl font-bold">OB ASESORÍA FISCAL Y CONTABLE</h1>
+          <nav className="space-x-6">
+            <button onClick={() => setPage("inicio")} className={`hover:text-gray-300 ${page === "inicio" && "underline"}`}>Inicio</button>
+            <button onClick={() => setPage("servicios")} className={`hover:text-gray-300 ${page === "servicios" && "underline"}`}>Servicios</button>
+            <button onClick={() => setPage("contacto")} className={`hover:text-gray-300 ${page === "contacto" && "underline"}`}>Contacto</button>
+          </nav>
+        </div>
+      </header>
+
+      {/* Page Content */}
+      <main className="flex-grow">{pages[page]}</main>
+
+      {/* Footer */}
+      <footer className="bg-gray-200 text-center text-gray-600 py-4">
+        <p>© {new Date().getFullYear()} OB Asesoría Fiscal y Contable. Todos los derechos reservados.</p>
+      </footer>
+    </div>
+  );
+}
